@@ -1,1 +1,19 @@
+# Tabuada com incremento e decremento
+numero = int(input("Digite o número para a tabuada: "))
+inicio = int(input("Digite o início da tabuada: "))
+fim = int(input("Digite o fim da tabuada: "))
+incremento = int(input("Digite o incremento: "))
+
+# Tabuada com incremento
+print(f"\nTabuada de {numero} com incremento:")
+for i in range(inicio, fim + 1, incremento):
+    resultado = numero * i
+    print(f"{numero} x {i} = {resultado}")
+
+# Tabuada com decremento
+decremento = int(input("Digite o decremento: "))
+print(f"\nTabuada de {numero} com decremento:")
+for i in range(fim, inicio - 1, -decremento):
+    resultado = numero * i
+    print(f"{numero} x {i} = {resultado}")
 
