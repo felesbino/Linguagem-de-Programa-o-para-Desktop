@@ -1,1 +1,51 @@
 
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Digite um número inteiro (entre 0 e 99): ");
+        string input = Console.ReadLine();
+
+        if (int.TryParse(input, out int numero) && numero >= 0 && numero < 100)
+        {
+            string numeroPorExtenso = ConverteParaExtenso(numero);
+            Console.WriteLine($"Número por extenso: {numeroPorExtenso}");
+        }
+        else
+        {
+            Console.WriteLine("Entrada inválida. Por favor, insira um número inteiro válido entre 0 e 99.");
+        }
+    }
+
+    static string ConverteParaExtenso(int numero)
+    {
+        string[] unidades = {"", "Um", "Dois", "Três", "Quatro", "Cinco", "Seis", "Sete", "Oito", "Nove"};
+        string[] especiais10a19 = {"Dez", "Onze", "Doze", "Treze", "Quatorze", "Quinze", "Dezesseis", "Dezessete", "Dezoito", "Dezenove"};
+        string[] dezenas = {"", "", "Vinte", "Trinta", "Quarenta", "Cinquenta", "Sessenta", "Setenta", "Oitenta", "Noventa"};
+
+        if (numero < 10)
+        {
+            return unidades[numero];
+        }
+        else if (numero >= 10 && numero < 20)
+        {
+            return especiais10a19[numero - 10];
+        }
+        else
+        {
+            int unidade = numero % 10;
+            int dezena = numero / 10;
+
+            if (unidade == 0)
+            {
+                return dezenas[dezena];
+            }
+            else
+            {
+                return $"{dezenas[dezena]} e {unidades[unidade]}";
+            }
+        }
+    }
+}
