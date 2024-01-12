@@ -1,1 +1,210 @@
+Primeira parte da aula 
+using System;
 
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Digite um número inteiro (entre 0 e 99): ");
+        string input = Console.ReadLine();
+
+        // Verifica se a entrada do usuário é um número inteiro válido
+        if (int.TryParse(input, out int numero) && numero >= 0 && numero < 100)
+        {
+            // Converte o número para sua representação por extenso
+            string numeroPorExtenso = ConverteParaExtenso(numero);
+
+            // Exibe o número por extenso na tela
+            Console.WriteLine($"Número por extenso: {numeroPorExtenso}");
+        }
+        else
+        {
+            // Exibe mensagem de erro se a entrada não for válida
+            Console.WriteLine("Entrada inválida. Por favor, insira um número inteiro válido entre 0 e 99.");
+        }
+    }
+
+    // Função que converte um número para sua representação por extenso
+    static string ConverteParaExtenso(int numero)
+    {
+        // Arrays com as representações por extenso das unidades, especiais de 10 a 19, e dezenas
+        string[] unidades = {"", "Um", "Dois", "Três", "Quatro", "Cinco", "Seis", "Sete", "Oito", "Nove"};
+        string[] especiais10a19 = {"Dez", "Onze", "Doze", "Treze", "Quatorze", "Quinze", "Dezesseis", "Dezessete", "Dezoito", "Dezenove"};
+        string[] dezenas = {"", "", "Vinte", "Trinta", "Quarenta", "Cinquenta", "Sessenta", "Setenta", "Oitenta", "Noventa"};
+
+        // Se o número for menor que 10, retorna a representação por extenso da unidade
+        if (numero < 10)
+        {
+            return unidades[numero];
+        }
+        // Se o número estiver entre 10 e 19, retorna a representação por extenso especial
+        else if (numero >= 10 && numero < 20)
+        {
+            return especiais10a19[numero - 10];
+        }
+        // Se o número for maior ou igual a 20, realiza a conversão considerando dezenas e unidades
+        else
+        {
+            int unidade = numero % 10;
+            int dezena = numero / 10;
+
+            // Se a unidade for zero, retorna apenas a representação por extenso da dezena
+            if (unidade == 0)
+            {
+                return dezenas[dezena];
+            }
+            // Se houver uma unidade, retorna a representação por extenso da dezena e da unidade separadas por "e"
+            else
+            {
+                return $"{dezenas[dezena]} e {unidades[unidade]}";
+            }
+        }
+    }
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+o uso de métodos de decisão que são essenciais para controlar o fluxo do programa com base em condições específicas
+
+if (numero < 10)
+{
+    return unidades[numero];
+}
+else if (numero >= 10 && numero < 20)
+{
+    return especiais10a19[numero - 10];
+}
+else
+{
+    // ...
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------
+part 1 pesquisas (variaveis) 
+
+string nacionalidade = "brasileira";
+
+if (nacionalidade == "brasileira")
+{
+    Console.WriteLine("A pessoa é brasileira.");
+}
+else
+{
+    Console.WriteLine("A pessoa não é brasileira.");
+}
+
+part 2 
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Sexo
+        string sexo = "Feminino"; // Pode ser "Masculino", "Feminino", "Outro", etc.
+
+        // Idade
+        int idade = 25; // Pode ser qualquer valor inteiro representando a idade
+
+        // Nacionalidade
+        string nacionalidade = "Brasileira"; // Pode ser o país de origem ou nacionalidade
+
+        // Exemplo de uso
+        Console.WriteLine($"Sexo: {sexo}");
+        Console.WriteLine($"Idade: {idade} anos");
+        Console.WriteLine($"Nacionalidade: {nacionalidade}");
+    }
+}
+part 3 
+using System;
+
+// Enumeração para representar o sexo
+enum Sexo
+{
+    Masculino,
+    Feminino,
+    Outro
+}
+
+// Enumeração para representar a nacionalidade
+enum Nacionalidade
+{
+    Brasileira,
+    Outra
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Sexo
+        Sexo sexo = Sexo.Feminino; // Pode ser Sexo.Masculino, Sexo.Outro, etc.
+
+        // Idade
+        int idade = 25; // Pode ser qualquer valor inteiro representando a idade
+
+        // Nacionalidade
+        Nacionalidade nacionalidade = Nacionalidade.Brasileira; // Pode ser Nacionalidade.Outra, etc.
+
+        // Exemplo de uso
+        Console.WriteLine($"Sexo: {sexo}");
+        Console.WriteLine($"Idade: {idade} anos");
+        Console.WriteLine($"Nacionalidade: {nacionalidade}");
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Informe a idade da pessoa: ");
+
+        if (int.TryParse(Console.ReadLine(), out int idade))
+        {
+            if (idade >= 18 && idade <= 23)
+            {
+                Console.WriteLine("A pessoa está elegível para a categoria juvenil.");
+            }
+            else
+            {
+                Console.WriteLine("A pessoa não está elegível para a categoria juvenil.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Idade inválida. Por favor, insira um valor numérico.");
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------
+switch (categoria) {
+    case 1:
+        bonus = salario * 0.1;
+        break;
+    case 6:
+        bonus = salario * 0.07;
+        break;
+    case 7:
+        bonus = 100;
+        break;
+    default:
+        bonus = 0;
+        break;
+}
+
+explicação 
+    switch (categoria): Indica que a expressão a ser avaliada é a variável categoria.
+    case 1:: Se categoria for igual a 1, executa o bloco de código seguinte.
+        bonus = salario * 0.1;: Calcula o bônus como 10% do salário.
+        break;: Abandona a estrutura switch, evitando a execução dos casos subsequentes.
+    case 6:: Se categoria for igual a 6, executa o bloco de código seguinte.
+        bonus = salario * 0.07;: Calcula o bônus como 7% do salário.
+        break;: Abandona a estrutura switch.
+    case 7:: Se categoria for igual a 7, executa o bloco de código seguinte.
+        bonus = 100;: Define o bônus como um valor fixo de 100.
+        break;: Abandona a estrutura switch.
+    default:: Se nenhuma das condições anteriores for atendida, executa o bloco de código seguinte.
+        bonus = 0;: Define o bônus como 0.
+        break;: Abandona a estrutura switch.
