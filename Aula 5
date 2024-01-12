@@ -1,1 +1,96 @@
+Primeira parte - 08h00 - 10h00 (começo atvidade avaliativa)
 
+using System;
+using System.Collections.Generic;
+using OfficeOpenXml;
+
+class Program
+{
+    static void Main()
+    {
+        List<Despesa> despesas = new List<Despesa>();
+
+        bool continuar = true;
+
+        while (continuar)
+        {
+            Console.Write("Digite o nome da despesa (ou 'sair' para finalizar): ");
+            string nomeDespesa = Console.ReadLine();
+
+            if (nomeDespesa.ToLower() == "sair")
+            {
+                continuar = false;
+            }
+            else if (!string.IsNullOrEmpty(nomeDespesa))
+            {
+                double valorDespesa;
+
+                do
+                {
+                    Console.Write($"Digite o valor da despesa '{nomeDespesa}': ");
+                } while (!double.TryParse(Console.ReadLine(), out valorDespesa) || valorDespesa < 0);
+
+                Despesa novaDespesa = new Despesa(nomeDespesa, valorDespesa);
+                despesas.Add(novaDespesa);
+            }
+            else
+            {
+                Console.WriteLine("Por favor, insira um nome válido para a despesa.");
+            }
+        }
+
+        if (despesas.Count > 0)
+        {
+            // Configurar o contexto de licença
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var pacote = new ExcelPackage())
+            {
+                var planilha = pacote.Workbook.Worksheets.Add("Despesas");
+
+                // Cabeçalhos
+                planilha.Cells["A1"].Value = "Nome";
+                planilha.Cells["B1"].Value = "Valor";
+
+                // Preencher dados
+                for (int i = 0; i < despesas.Count; i++)
+                {
+                    planilha.Cells[i + 2, 1].Value = despesas[i].Nome;
+                    planilha.Cells[i + 2, 2].Value = despesas[i].Valor;
+                }
+
+                // Salvar o arquivo
+                var caminhoCompleto = @"C:\Caminho\Para\Sua\Pasta\Despesas.xlsx";
+
+                // Obter o diretório do caminho completo
+                var diretorio = System.IO.Path.GetDirectoryName(caminhoCompleto);
+
+                // Verificar se o diretório existe, caso contrário, criar
+                if (!System.IO.Directory.Exists(diretorio))
+                {
+                    System.IO.Directory.CreateDirectory(diretorio);
+                }
+
+                pacote.SaveAs(new System.IO.FileInfo(caminhoCompleto));
+
+                Console.WriteLine($"Planilha '{caminhoCompleto}' criada com sucesso!");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Nenhuma despesa foi inserida.");
+        }
+    }
+}
+
+class Despesa
+{
+    public string Nome { get; set; }
+    public double Valor { get; set; }
+
+    public Despesa(string nome, double valor)
+    {
+        Nome = nome;
+        Valor = valor;
+    }
+}
