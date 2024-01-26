@@ -1,0 +1,121 @@
+using System;
+using System.Collections.Generic;
+
+public class Receita
+{
+    public string Nome { get; set; }
+    public int TempoPreparacao { get; set; } // em minutos
+    public string GrauDificuldade { get; set; }
+    public List<string> Categorias { get; set; }
+    public string Descricao { get; set; }
+    public List<Ingrediente> Ingredientes { get; set; }
+
+    public Receita(string nome, int tempoPreparacao, string grauDificuldade, List<string> categorias, string descricao, List<Ingrediente> ingredientes)
+    {
+        Nome = nome;
+        TempoPreparacao = tempoPreparacao;
+        GrauDificuldade = grauDificuldade;
+        Categorias = categorias;
+        Descricao = descricao + " (PG13)";
+        Ingredientes = ingredientes;
+    }
+
+    public override string ToString()
+    {
+        return $"Nome: {Nome}\nTempo de Preparação: {TempoPreparacao} minutos\nGrau de Dificuldade: {GrauDificuldade}\nCategorias: {string.Join(", ", Categorias)}\nDescrição: {Descricao}\nIngredientes:\n{string.Join("\n", Ingredientes)}\n";
+    }
+}
+
+public class Ingrediente
+{
+    public string Nome { get; set; }
+    public double Quantidade { get; set; }
+    public string UnidadeMedida { get; set; }
+
+    public Ingrediente(string nome, double quantidade, string unidadeMedida)
+    {
+        Nome = nome;
+        Quantidade = quantidade;
+        UnidadeMedida = unidadeMedida;
+    }
+
+    public override string ToString()
+    {
+        return $"{Nome}: {Quantidade} {UnidadeMedida}";
+    }
+}
+
+public class SistemaReceitas
+{
+    private List<Receita> receitas;
+
+    public SistemaReceitas()
+    {
+        receitas = new List<Receita>();
+    }
+
+    public void AdicionarReceita(Receita receita)
+    {
+        receitas.Add(receita);
+    }
+
+    public void ListarTodasReceitas()
+    {
+        foreach (var receita in receitas)
+        {
+            Console.WriteLine(receita);
+        }
+    }
+
+    public void ListarPorDificuldade(string grauDificuldade)
+    {
+        foreach (var receita in receitas)
+        {
+            if (receita.GrauDificuldade.Equals(grauDificuldade, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine(receita);
+            }
+        }
+    }
+
+    public void ListarPorTempoPreparacao(int tempoMaximo)
+    {
+        foreach (var receita in receitas)
+        {
+            if (receita.TempoPreparacao <= tempoMaximo)
+            {
+                Console.WriteLine(receita);
+            }
+        }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        SistemaReceitas sistema = new SistemaReceitas();
+
+        // Exemplo de criação de receitas
+        Receita receita1 = new Receita("Bolo de Chocolate", 60, "Fácil", new List<string> { "Bolos", "Sobremesas" }, "Delicioso bolo de chocolate", new List<Ingrediente> { new Ingrediente("Farinha", 2, "xícaras"), new Ingrediente("Açúcar", 1, "xícara"), new Ingrediente("Chocolate em pó", 1, "xícara"), new Ingrediente("Ovo", 3, "unidades"), new Ingrediente("Leite", 1, "xícara") });
+        Receita receita2 = new Receita("Salada de Frutas", 15, "Fácil", new List<string> { "Sobremesas", "Saladas" }, "Refrescante salada de frutas", new List<Ingrediente> { new Ingrediente("Morango", 10, "unidades"), new Ingrediente("Banana", 2, "unidades"), new Ingrediente("Maçã", 1, "unidade"), new Ingrediente("Uva", 20, "unidades"), new Ingrediente("Mel", 2, "colheres de sopa") });
+        Receita receita3 = new Receita("Risoto de Cogumelos", 30, "Médio", new List<string> { "Pratos Principais", "Risotos" }, "Saboroso risoto de cogumelos", new List<Ingrediente> { new Ingrediente("Arroz Arbóreo", 1.5, "xícaras"), new Ingrediente("Cogumelos", 200, "g"), new Ingrediente("Caldo de Legumes", 4, "xícaras"), new Ingrediente("Cebola", 1, "unidade"), new Ingrediente("Vinho Branco", 0.5, "xícara") });
+
+        // Adicionando as receitas ao sistema
+        sistema.AdicionarReceita(receita1);
+        sistema.AdicionarReceita(receita2);
+        sistema.AdicionarReceita(receita3);
+
+        // Exibir todas as receitas
+        Console.WriteLine("=== Todas as Receitas ===");
+        sistema.ListarTodasReceitas();
+
+        // Exibir receitas por dificuldade
+        Console.WriteLine("\n=== Receitas Fáceis ===");
+        sistema.ListarPorDificuldade("Fácil");
+
+        // Exibir receitas por tempo de preparação (exemplo: 60 minutos)
+        Console.WriteLine("\n=== Receitas com Tempo de Preparação de até 60 minutos ===");
+        sistema.ListarPorTempoPreparacao(60);
+    }
+}
