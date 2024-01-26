@@ -1,0 +1,543 @@
+01
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int quantidadeMinima, quantidadeMaxima;
+            double estoqueMedio;
+
+            // Solicitar ao usuário para inserir a quantidade mínima e máxima
+            Console.Write("Digite a quantidade mínima de peças no estoque: ");
+            quantidadeMinima = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite a quantidade máxima de peças no estoque: ");
+            quantidadeMaxima = int.Parse(Console.ReadLine());
+
+            // Calcular o estoque médio
+            estoqueMedio = CalcularEstoqueMedio(quantidadeMinima, quantidadeMaxima);
+
+            // Exibir o resultado com a marca d'água ALC
+            Console.WriteLine($"O estoque médio é: {estoqueMedio} ALC");
+            Console.ReadLine();
+        }
+
+        // Função para calcular o estoque médio
+        static double CalcularEstoqueMedio(int quantidadeMinima, int quantidadeMaxima)
+        {
+            return (quantidadeMinima + quantidadeMaxima) / 2.0;
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+02
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Ler a cotação do dólar
+            Console.Write("Digite a cotação do dólar: ");
+            double cotacaoDolar = double.Parse(Console.ReadLine());
+
+            // Ler um valor em dólares
+            Console.Write("Digite o valor em dólares: ");
+            double valorDolar = double.Parse(Console.ReadLine());
+
+            // Converter o valor para Real
+            double valorReal = ConverterDolarParaReal(valorDolar, cotacaoDolar);
+
+            // Exibir o resultado com a marca d'água ALC
+            Console.WriteLine($"O valor em Reais é: {valorReal:C} ALC");
+            Console.ReadLine();
+        }
+
+        // Função para converter dólar para real
+        static double ConverterDolarParaReal(double valorDolar, double cotacaoDolar)
+        {
+            return valorDolar / cotacaoDolar;
+        }
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Identificação do vendedor
+            Console.Write("Digite a identificação do vendedor: ");
+            string identificacaoVendedor = Console.ReadLine();
+
+            // Código da peça
+            Console.Write("Digite o código da peça: ");
+            string codigoPeca = Console.ReadLine();
+
+            // Preço unitário da peça
+            Console.Write("Digite o preço unitário da peça: ");
+            double precoUnitario = double.Parse(Console.ReadLine());
+
+            // Quantidade vendida
+            Console.Write("Digite a quantidade vendida: ");
+            int quantidadeVendida = int.Parse(Console.ReadLine());
+
+            // Calcular o total da venda
+            double totalVenda = precoUnitario * quantidadeVendida;
+
+            // Calcular a comissão (5% do total da venda)
+            double comissao = totalVenda * 0.05;
+
+            // Exibir os resultados com a marca d'água ALC
+            Console.WriteLine($"Identificação do vendedor: {identificacaoVendedor} ALC");
+            Console.WriteLine($"Código da peça: {codigoPeca} ALC");
+            Console.WriteLine($"Preço unitário da peça: {precoUnitario:C} ALC");
+            Console.WriteLine($"Quantidade vendida: {quantidadeVendida} ALC");
+            Console.WriteLine($"Total da venda: {totalVenda:C} ALC");
+            Console.WriteLine($"Comissão do vendedor: {comissao:C} ALC");
+            Console.ReadLine();
+        }
+    }
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+4 -
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Ler quatro valores inteiros
+            Console.Write("Digite o primeiro valor (A): ");
+            int a = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o segundo valor (B): ");
+            int b = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o terceiro valor (C): ");
+            int c = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o quarto valor (D): ");
+            int d = int.Parse(Console.ReadLine());
+
+            // Realizar as operações de adição e multiplicação dois a dois
+            int resultado1 = a + b;
+            int resultado2 = a + c;
+            int resultado3 = a + d;
+            int resultado4 = b + c;
+            int resultado5 = b + d;
+            int resultado6 = c + d;
+
+            int resultado7 = a * b;
+            int resultado8 = a * c;
+            int resultado9 = a * d;
+            int resultado10 = b * c;
+            int resultado11 = b * d;
+            int resultado12 = c * d;
+
+            // Exibir os resultados com a marca d'água ALC
+            Console.WriteLine($"A + B = {resultado1} ALC");
+            Console.WriteLine($"A + C = {resultado2} ALC");
+            Console.WriteLine($"A + D = {resultado3} ALC");
+            Console.WriteLine($"B + C = {resultado4} ALC");
+            Console.WriteLine($"B + D = {resultado5} ALC");
+            Console.WriteLine($"C + D = {resultado6} ALC");
+
+            Console.WriteLine($"A * B = {resultado7} ALC");
+            Console.WriteLine($"A * C = {resultado8} ALC");
+            Console.WriteLine($"A * D = {resultado9} ALC");
+            Console.WriteLine($"B * C = {resultado10} ALC");
+            Console.WriteLine($"B * D = {resultado11} ALC");
+            Console.WriteLine($"C * D = {resultado12} ALC");
+            Console.ReadLine();
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+05-
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Solicitar ao usuário para inserir o tempo gasto e a velocidade média
+            Console.Write("Digite o tempo gasto na viagem (em horas): ");
+            double tempoGasto = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite a velocidade média (em Km/h): ");
+            double velocidadeMedia = double.Parse(Console.ReadLine());
+
+            // Calcular a distância percorrida
+            double distanciaPercorrida = CalcularDistancia(tempoGasto, velocidadeMedia);
+
+            // Calcular a quantidade de litros de combustível utilizada
+            double litrosUsados = CalcularLitrosUsados(distanciaPercorrida);
+
+            // Exibir os resultados com a marca d'água ALC
+            Console.WriteLine($"Velocidade média: {velocidadeMedia} Km/h ALC");
+            Console.WriteLine($"Tempo gasto na viagem: {tempoGasto} horas ALC");
+            Console.WriteLine($"Distância percorrida: {distanciaPercorrida} Km ALC");
+            Console.WriteLine($"Quantidade de litros utilizada: {litrosUsados} litros ALC");
+            Console.ReadLine();
+        }
+
+        // Função para calcular a distância percorrida
+        static double CalcularDistancia(double tempoGasto, double velocidadeMedia)
+        {
+            return tempoGasto * velocidadeMedia;
+        }
+
+        // Função para calcular a quantidade de litros de combustível utilizada
+        static double CalcularLitrosUsados(double distanciaPercorrida)
+        {
+            return distanciaPercorrida / 12.0;
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+06
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Solicitar ao usuário para inserir a temperatura em graus Fahrenheit
+            Console.Write("Digite a temperatura em graus Fahrenheit: ");
+            double temperaturaF = double.Parse(Console.ReadLine());
+
+            // Calcular a temperatura em graus Celsius
+            double temperaturaC = ConverterFahrenheitParaCelsius(temperaturaF);
+
+            // Exibir o resultado com a marca d'água ALC
+            Console.WriteLine($"A temperatura em graus Celsius é: {temperaturaC} °C ALC");
+            Console.ReadLine();
+        }
+
+        // Função para converter Fahrenheit para Celsius
+        static double ConverterFahrenheitParaCelsius(double temperaturaF)
+        {
+            return (temperaturaF - 32) * 5 / 9;
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+7
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Solicitar ao usuário para inserir o raio e a altura da lata de óleo
+            Console.Write("Digite o raio da lata de óleo: ");
+            double raio = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite a altura da lata de óleo: ");
+            double altura = double.Parse(Console.ReadLine());
+
+            // Calcular o volume da lata de óleo
+            double volume = CalcularVolumeLataOleo(raio, altura);
+
+            // Exibir o resultado com a marca d'água ALC
+            Console.WriteLine($"O volume da lata de óleo é: {volume} unidades cúbicas ALC");
+            Console.ReadLine();
+        }
+
+        // Função para calcular o volume da lata de óleo
+        static double CalcularVolumeLataOleo(double raio, double altura)
+        {
+            return 3.14159 * raio * raio * altura;
+        }
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Solicitar ao usuário para inserir a idade em anos, meses e dias
+            Console.Write("Digite a idade em anos: ");
+            int anos = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite a idade em meses: ");
+            int meses = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite a idade em dias: ");
+            int dias = int.Parse(Console.ReadLine());
+
+            // Calcular a idade em dias
+            int idadeEmDias = CalcularIdadeEmDias(anos, meses, dias);
+
+            // Exibir o resultado com a marca d'água ALC
+            Console.WriteLine($"A idade em dias é: {idadeEmDias} dias ALC");
+            Console.ReadLine();
+        }
+
+        // Função para calcular a idade em dias
+        static int CalcularIdadeEmDias(int anos, int meses, int dias)
+        {
+            return anos * 365 + meses * 30 + dias;
+        }
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9
+using System;
+
+namespace ALCWatermark
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Solicitar ao usuário para inserir dois números inteiros
+            Console.Write("Digite o primeiro número inteiro: ");
+            int numero1 = int.Parse(Console.ReadLine());
+
+            Console.Write("Digite o segundo número inteiro: ");
+            int numero2 = int.Parse(Console.ReadLine());
+
+            // Verificar e exibir os relacionamentos de ordem com a marca d'água ALC
+            if (numero1 == numero2)
+            {
+                Console.WriteLine($"{numero1} é igual a {numero2} ALC");
+            }
+            else
+            {
+                Console.WriteLine($"{numero1} não é igual a {numero2} ALC");
+            }
+
+            if (numero1 != numero2)
+            {
+                Console.WriteLine($"{numero1} é diferente de {numero2} ALC");
+            }
+
+            if (numero1 > numero2)
+            {
+                Console.WriteLine($"{numero1} é maior do que {numero2} ALC");
+            }
+
+            if (numero1 < numero2)
+            {
+                Console.WriteLine($"{numero1} é menor do que {numero2} ALC");
+            }
+
+            if (numero1 >= numero2)
+            {
+                Console.WriteLine($"{numero1} é maior ou igual a {numero2} ALC");
+            }
+
+            if (numero1 <= numero2)
+            {
+                Console.WriteLine($"{numero1} é menor ou igual a {numero2} ALC");
+                Console.ReadLine();
+            }
+        }
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace ALCWatermark
+{
+    public partial class Form1 : Form
+    {
+        private List<Despesa> despesas;
+        private Button btnGerarDocumentoConsolidado;
+        private Button btnOrdenarDespesas;
+
+        public Form1()
+        {
+            InitializeComponent();
+            despesas = new List<Despesa>();
+            InicializarDataGridView();
+
+            // Inicializar e configurar o botão para gerar o documento consolidado
+            btnGerarDocumentoConsolidado = new Button();
+            btnGerarDocumentoConsolidado.Text = "Gerar Documento Consolidado ALC";
+            btnGerarDocumentoConsolidado.Click += btnGerarDocumentoConsolidado_Click;
+
+            // Inicializar e configurar o botão para ordenar as despesas
+            btnOrdenarDespesas = new Button();
+            btnOrdenarDespesas.Text = "Ordenar Despesas ALC";
+            btnOrdenarDespesas.Click += btnOrdenarDespesas_Click;
+
+            // Adicionar os botões ao formulário
+            Controls.Add(btnGerarDocumentoConsolidado);
+            Controls.Add(btnOrdenarDespesas);
+
+            // Adicionar um título ao formulário
+            Text = "Controle de Despesas - ALC";
+        }
+
+        private void InicializarDataGridView()
+        {
+            // Configurar as colunas do DataGridView
+            dataGridView1.ColumnCount = 2;
+            dataGridView1.Columns[0].Name = "Nome da Despesa";
+            dataGridView1.Columns[1].Name = "Valor";
+
+            // Configurar o DataGridView para não permitir a edição direta das células
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
+
+            // Carregar os dados da lista de despesas no DataGridView
+            AtualizarDataGridView();
+        }
+
+        private void AtualizarDataGridView()
+        {
+            // Limpar as linhas existentes no DataGridView
+            dataGridView1.Rows.Clear();
+
+            // Adicionar as despesas ao DataGridView
+            foreach (var despesa in despesas)
+            {
+                dataGridView1.Rows.Add(despesa.Nome, despesa.Valor.ToString("C"));
+            }
+        }
+
+        private void btnAdicionarDespesa_Click(object sender, EventArgs e)
+        {
+            // Exibir caixa de diálogo de entrada para obter o nome da despesa
+            string nomeDespesa = ObterNomeDespesa();
+
+            if (nomeDespesa != null && decimal.TryParse(ObterValorDespesa(), out decimal valor))
+            {
+                Despesa novaDespesa = new Despesa(nomeDespesa, valor);
+                despesas.Add(novaDespesa);
+
+                // Atualizar o DataGridView
+                AtualizarDataGridView();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, preencha os campos corretamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string ObterNomeDespesa()
+        {
+            // Exibir caixa de diálogo de entrada para obter o nome da despesa
+            using (var form = new InputForm("Digite o nome da despesa:"))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    return form.ValorInformado;
+                }
+                return null;
+            }
+        }
+
+        private string ObterValorDespesa()
+        {
+            // Exibir caixa de diálogo de entrada para obter o valor da despesa
+            using (var form = new InputForm("Digite o valor da despesa:"))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    return form.ValorInformado;
+                }
+                return null;
+            }
+        }
+
+        private void btnSalvarPlanilha_Click(object sender, EventArgs e)
+        {
+            // Salvar a lista de despesas em um arquivo CSV
+            using (StreamWriter sw = new StreamWriter("planilha_despesas.csv"))
+            {
+                foreach (var despesa in despesas)
+                {
+                    sw.WriteLine($"{despesa.Nome},{despesa.Valor}");
+                }
+            }
+
+            MessageBox.Show("Planilha salva com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnGerarDocumento_Click(object sender, EventArgs e)
+        {
+            if (despesas.Count > 0)
+            {
+                // Calcular total e percentual para cada despesa
+                decimal totalGastos = despesas.Sum(d => d.Valor);
+                List<string> relatorio = new List<string>();
+
+                foreach (var despesa in despesas)
+                {
+                    decimal percentual = (despesa.Valor / totalGastos) * 100;
+                    relatorio.Add($"{despesa.Nome}: {despesa.Valor.ToString("C")} ({percentual.ToString("0.00")}%)");
+                }
+
+                // Adicionar a totalização ao relatório
+                relatorio.Add($"Total de Gastos: {totalGastos.ToString("C")}");
+
+                // Exibir o total dos gastos e a distribuição percentual no MessageBox
+                MessageBox.Show($"Total de Gastos: {totalGastos.ToString("C")}\n\nRelatório:\n{string.Join("\n", relatorio)}", "Relatório de Despesas ALC", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Salvar o relatório em um arquivo de texto
+                using (StreamWriter sw = new StreamWriter("relatorio_despesas.txt"))
+                {
+                    foreach (var linha in relatorio)
+                    {
+                        sw.WriteLine(linha);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Adicione despesas antes de gerar o relatório.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnGerarDocumentoConsolidado_Click(object sender, EventArgs e)
+        {
+            GerarDocumentoConsolidado();
+        }
+
+        private void GerarDocumentoConsolidado()
+        {
+            if (despesas.Count > 0)
+            {
+                // Calcular total e percentual para cada despesa
+                decimal totalGastos = despesas.Sum(d => d.Valor);
+                List<string> relatorio = new List<string>();
+
+                foreach (var despesa in despesas)
+                {
+                    decimal percentual = (des
+
