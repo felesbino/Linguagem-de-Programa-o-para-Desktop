@@ -1,0 +1,59 @@
+1 Questão
+Considere os modificadores a seguir 
+I- Internal 
+II- Private
+III- Protected
+IV-  External
+Assinale a opção que indica os modificadores da lista acima que, além do modificador public, são válidos no c#, quano da especificação da acessibilidade de um membro ou tipo.
+A) I,II e III, apenas 
+B) I,II e IV, apenas
+C) I,III e IV, apenas (correta)
+D) II, III e IV, apenas
+E) II e III, apenas
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Questão 2
+No C#, a classe FileStream permite operações sobre arquivos, tais como leitura e gravação, dentre outras. Na criação de um objeyo dessa classe, é preciso fornecer um valor para o parâmetro FieMode, que define como o arquivo é aberto. Assinale a opção que não é uma escolha válida para esse parâmetro.
+A) Append
+B)CreateNew 
+C) OpenOrCreate
+D)Rewrite (correta)
+E)Truncate
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Questão 3
+Analise o código C# a seguir 
+using System;
+
+public class X
+{
+    public static int Test(int a, int b)
+    {
+        while (a != b)
+        {
+            if (a > b)
+            {
+                a -= b;
+            }
+            else
+            {
+                b -= a;
+            }
+        }
+        return a;
+    }
+
+    static void Main(string[] args)
+    {
+        int x = 36;
+        int y = 7;
+        Console.WriteLine(X.Test(x, y));
+    }
+}
+
+O número produzido pela execução desse código é: 
+A)1 (correto)
+B)2
+C)3
+D)7
+E)36
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Questão 4 
